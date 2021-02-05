@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 import logging
 
 from celery import shared_task
-from sorl.thumbnail.compat import text_type
 from sorl.thumbnail.conf import settings
 from sorl.thumbnail.images import ImageFile
 from sorl.thumbnail import default
@@ -31,8 +30,8 @@ def create_thumbnail(file_, geometry_string, options, name, force=False):
             # create it and exit early.
             # Will return working empty image type; 404'd image
             logger.warn(
-                text_type('Remote file [%s] at [%s] does not exist'),
-                file_, geometry_string)
+                "Remote file [{}}] at [{}}] does not exist".format(file_, geometry_string)
+            )
             return
 
         # We might as well set the size since we have the image in memory
